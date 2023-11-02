@@ -37,6 +37,7 @@ $("#rollCustom").on("click", () => {
 });
 
 function rollDice(dice) {
+  //takes in a number and type of dice (in xdy format) and retrns the total result of the roll
   let result = 0;
   if (dice.includes("d")) {
     const diceNum = Number(dice.split("d")[0]);
@@ -54,12 +55,13 @@ function rollDice(dice) {
 }
 
 function toInches(height) {
+  //takes in a length of feet and inches (in x'y" format) and converts it to a number of inches
   if (height === "") {
     height = "0'0";
   }
   const heightArray = height
-    .replace('"', "")
-    .split("'")
+    .replace('"', "") //removes double quotes from string
+    .split("'") //splits string around single quotes
     .filter((i) => i); //removes empty string from array
   console.log(height, heightArray);
   height = Number(heightArray[0]) * 12;
@@ -68,6 +70,7 @@ function toInches(height) {
 }
 
 function toFeet(height) {
+  //changes number of inches into feet and inches (in x'y" format)
   console.log("test", height);
   let feet = Math.floor(height / 12);
   let inches = height % 12;
