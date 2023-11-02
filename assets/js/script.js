@@ -1,15 +1,18 @@
-$("#raceSelect").on("change", () => {
-  console.log($("#raceSelect").val());
-  if ($("#raceSelect").val() == "Custom") {
+$("#raceSelect").on("change", function () {
+  console.clear();
+  console.log($(this).val());
+  if ($(this).val() == "Custom") {
     $("input").each((index, element) => {
+      //enables all input boxes
       $(element).prop("disabled", false);
       $(element).val("");
     });
   } else {
-    let data = $("#raceSelect").find(":selected").data("info");
+    const data = $("#raceSelect").find(":selected").data("info");
     console.log(data);
     $("input").each((index, element) => {
-      let id = $(element).attr("id");
+      //disables all input boxes and sets their values to the apropiate data values
+      const id = $(element).attr("id");
       $(element).prop("disabled", true);
       $(element).val(data[id]);
     });
@@ -19,21 +22,21 @@ $("#raceSelect").on("change", () => {
 
 $("#rollCustom").on("click", () => {
   let height = toInches($("#heightBase").val());
-  console.log("Base Height:", height, "in.");
-  let heightMod = rollDice($("#heightMod").val());
+  //   console.log("Base Height:", height, "in.");
+  const heightMod = rollDice($("#heightMod").val());
   console.log("Height Modifier:", heightMod, "in.");
   height += heightMod;
   let weight = Number(
-    $("#weightBase").val().replace("lb", "").replace("s", "").replace(".", "")
+    $("#weightBase").val().replace("lb", "").replace("s", "").replace(".", "") //removes lbs. from weight and changes it to a number
   );
-  console.log("Base Weight:", weight, "lbs.");
-  let weightMod = rollDice($("#weightMod").val()) * heightMod;
+  //   console.log("Base Weight:", weight, "lbs.");
+  const weightMod = rollDice($("#weightMod").val()) * heightMod;
   console.log("Weight Modifier:", weightMod, "lbs.");
   weight += weightMod;
   $("#rolledHeight").text(toFeet(height));
   $("#rolledWeight").text(weight + " lbs.");
-  console.log("Total Weight:", weight, "lbs.");
   console.log("Total Height:", height, "in.");
+  console.log("Total Weight:", weight, "lbs.");
 });
 
 function rollDice(dice) {
@@ -44,7 +47,7 @@ function rollDice(dice) {
     const diceType = Number(dice.split("d")[1]);
     console.log("Rolling:", diceNum + "d" + diceType);
     for (i = 0; i < diceNum; i++) {
-      let roll = Math.floor(Math.random() * diceType) + 1;
+      const roll = Math.floor(Math.random() * diceType) + 1;
       result += roll;
       console.log("Roll " + (i + 1) + ":", roll);
     }
@@ -63,7 +66,6 @@ function toInches(height) {
     .replace('"', "") //removes double quotes from string
     .split("'") //splits string around single quotes
     .filter((i) => i); //removes empty string from array
-  console.log(height, heightArray);
   height = Number(heightArray[0]) * 12;
   height += Number(heightArray[1]) || 0;
   return height;
@@ -71,9 +73,8 @@ function toInches(height) {
 
 function toFeet(height) {
   //changes number of inches into feet and inches (in x'y" format)
-  console.log("test", height);
-  let feet = Math.floor(height / 12);
-  let inches = height % 12;
+  const feet = Math.floor(height / 12);
+  const inches = height % 12;
   return `${feet}'${inches}"`;
 }
 
