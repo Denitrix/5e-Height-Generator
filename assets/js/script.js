@@ -43,7 +43,7 @@ function rollDice(dice) {
   //takes in a number and type of dice (in xdy format) and retrns the total result of the roll
   let result = 0;
   if (dice.includes("d")) {
-    const diceNum = Number(dice.split("d")[0]);
+    const diceNum = Number(dice.split("d")[0]) || 1;
     const diceType = Number(dice.split("d")[1]);
     console.log("Rolling:", diceNum + "d" + diceType);
     for (i = 0; i < diceNum; i++) {
