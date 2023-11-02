@@ -16,16 +16,12 @@ button {
   vertical-align: inherit;
   margin: 2px;
 }
-
 select {
-  position: absolute;
-  z-index: 9999;
+  /*   position: absolute;
+  z-index: 9999; */
   width: 177px !important;
 }
 
 .wrapper {
-  /*   width: 200px;
-  padding: 20px;*/
   height: 25px;
-  /* margin: 2px; */
 }

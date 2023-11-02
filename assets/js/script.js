@@ -77,7 +77,7 @@ function toFeet(height) {
   return `${feet}'${inches}"`;
 }
 
-//changes select size
+/* //changes select size to add scrollbar
 $("select").on("focus", function () {
   this.size = 5;
 });
@@ -90,3 +90,4 @@ $("select").on("blur", function () {
   this.size = 1;
   this.blur();
 });
+ */
